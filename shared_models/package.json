@@ -8,7 +8,7 @@
     "sync-db": "ts-node src/scripts.ts"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    registry-url: 'https://registry.npmjs.org/'
   },
   "dependencies": {
     "moment-timezone": "^0.6.0",

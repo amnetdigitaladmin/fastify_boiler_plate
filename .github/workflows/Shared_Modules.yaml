@@ -48,10 +48,10 @@ jobs:
           echo "LATEST_VERSION=$LATEST" >> $GITHUB_ENV
           echo "Latest version is $LATEST"
 
-      - name: Clone Amc repo
+      - name: Clone app repo
         run: |
-          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/amnetdigitaladmin/Amc.git
-          cd Amc
+          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/amnetdigitaladmin/fastify_boiler_plate.git
+          cd Fastify-app/src
           sed -i "s|\"@rohithkumar/shared_models\": \".*\"|\"@rohithkumar/shared_models\": \"^${{ env.LATEST_VERSION }}\"|" package.json
           git config user.name "github-actions"
           git config user.email "actions@github.com"

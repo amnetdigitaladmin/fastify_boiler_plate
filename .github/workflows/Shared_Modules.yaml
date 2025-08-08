@@ -51,7 +51,7 @@ jobs:
       - name: Clone app repo
         run: |
           git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/amnetdigitaladmin/fastify_boiler_plate.git
-          cd Fastify-app/src
+          cd fastify_boiler_plate/Fastify-app
           sed -i "s|\"@rohithkumar/shared_models\": \".*\"|\"@rohithkumar/shared_models\": \"^${{ env.LATEST_VERSION }}\"|" package.json
           git config user.name "github-actions"
           git config user.email "actions@github.com"
@@ -59,13 +59,3 @@ jobs:
           git commit -m "chore: update shared_models to v${{ env.LATEST_VERSION }}" || echo "No changes to commit"
           git push origin main
 
-      - name: Clone technid_git_checkl repo
-        run: |
-          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/amnetdigitaladmin/technid_git_checkl.git
-          cd technid_git_checkl
-          sed -i "s|\"@rohithkumar/shared_models\": \".*\"|\"@rohithkumar/shared_models\": \"^${{ env.LATEST_VERSION }}\"|" package.json
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add package.json
-          git commit -m "chore: update shared_models to v${{ env.LATEST_VERSION }}" || echo "No changes to commit"
-          git push origin main

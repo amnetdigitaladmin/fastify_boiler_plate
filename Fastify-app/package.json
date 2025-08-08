@@ -12,7 +12,7 @@
     "author": "Amnet Digital",
     "license": "ISC",
     "dependencies": {
-        "@dineshReddyPadala/shared_models": "^1.0.0",
+        "@rohithkumar/shared_models": "^1.0.0",
         "@fastify/cookie": "^11.0.2",
         "@fastify/cors": "^11.1.0",
         "@fastify/helmet": "^13.0.1",

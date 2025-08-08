@@ -2,6 +2,7 @@ import { DataSource } from "typeorm";
 import dotenv from 'dotenv';
 import { User } from "@rohithkumar/shared_models";
 import { userSessions } from '../models/schemas/user-sessions';
+
 dotenv.config();
 let AppDataSource: any;
 let retries: number = 5;

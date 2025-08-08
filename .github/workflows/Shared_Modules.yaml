@@ -23,6 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd shared_models
+          ls
           npm ci
 
       - name: Build shared models

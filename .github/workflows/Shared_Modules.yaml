@@ -1,0 +1,64 @@
+name: Publish and Update Consumers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'shared_models/**' # Only trigger when shared_models folder changes
+
+jobs:
+  publish-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build shared models
+        run: npm run build
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Wait for npm propagation
+        run: sleep 15
+
+      - name: Get latest version from npm
+        id: latest
+        run: |
+          LATEST=$(npm show @rohithkumar/shared_models version)
+          echo "LATEST_VERSION=$LATEST" >> $GITHUB_ENV
+          echo "Latest version is $LATEST"
+
+      - name: Clone Amc repo
+        run: |
+          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/amnetdigitaladmin/Amc.git
+          cd Amc
+          sed -i "s|\"@rohithkumar/shared_models\": \".*\"|\"@rohithkumar/shared_models\": \"^${{ env.LATEST_VERSION }}\"|" package.json
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add package.json
+          git commit -m "chore: update shared_models to v${{ env.LATEST_VERSION }}" || echo "No changes to commit"
+          git push origin main
+
+      - name: Clone technid_git_checkl repo
+        run: |
+          git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/amnetdigitaladmin/technid_git_checkl.git
+          cd technid_git_checkl
+          sed -i "s|\"@rohithkumar/shared_models\": \".*\"|\"@rohithkumar/shared_models\": \"^${{ env.LATEST_VERSION }}\"|" package.json
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add package.json
+          git commit -m "chore: update shared_models to v${{ env.LATEST_VERSION }}" || echo "No changes to commit"
+          git push origin main

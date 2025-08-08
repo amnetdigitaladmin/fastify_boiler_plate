@@ -1,0 +1,24 @@
+{
+ "name": "@dineshReddyPadala/shared_models",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "sync-db": "ts-node src/scripts.ts"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.6.0",
+    "pg": "^8.16.0",
+    "typeorm": "^0.3.17"
+  },
+  "devDependencies": {
+    "@types/moment-timezone": "^0.5.30",
+    "dotenv": "^16.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.0"
+  }
+}

@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
 import dotenv from 'dotenv';
-import { User } from "@rohithkumar/shared_models";
+//import { User } from "@rohithkumar/shared_models";
 import { userSessions } from '../models/user-sessions';
 
 dotenv.config();

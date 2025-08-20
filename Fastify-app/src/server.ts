@@ -266,8 +266,22 @@ app.get('/auth/callback', async (request, reply) => {
     //let emailrequest : any = { email: user.email };
     let userDetail :any = await UserRepository.getByemail(user.email.toLowerCase());
     console.log("userDetail", userDetail);
+    if(!userDetail){
+    const newUserObj: any = {
+      email: user.email.toLowerCase(),
+      first_name: user.displayName ? user.displayName.split(' ')[0] : '',
+      last_name: user.displayName ? user.displayName.split(' ').slice(1).join(' ') : '',
+      full_name: user.displayName || user.email,
+      is_active: true,
+      is_deleted: false,
+      created_by: 1,
+      updated_by: 1,
+      roleId: 1 
+    };
+    userDetail = await UserRepository.userSave(newUserObj);
+    }
     const token = jwt.sign(
-      { userId: userDetail.id, email: userDetail.email },
+      { userId: userDetail.id },
       process.env.JWT_SECRET_KEY!,
       { expiresIn: parseInt(process.env.JWT_TOKEN_EXPIRE!) }
     );
@@ -300,8 +314,7 @@ app.get('/auth/callback', async (request, reply) => {
               return reply
                 .status(200)
                 .send({
-                  token: token,
-                  user_info: userDetail,              
+                  token: token,              
                   message: "User Logged in Successfully",
                 });
     

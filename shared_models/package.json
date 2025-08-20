@@ -1,6 +1,6 @@
 {
- "name": "@rohithkumar/shared_models",
-  "version": "1.9.0",
+ "name": "@platform-modules/CivilAviationAuthority",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

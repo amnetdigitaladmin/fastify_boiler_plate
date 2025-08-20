@@ -6,6 +6,7 @@
 # Node artifact files
 ../New folder/
 node_modules/
+../src/controllers/test.ts
 dist/
 .env
 .npmrc

@@ -1,19 +1,27 @@
-import { FastifyPluginAsync , FastifyRequest, FastifyReply } from 'fastify';
+import { FastifyPluginAsync, FastifyRequest, FastifyReply } from 'fastify';
 import userService from '../controllers/fastify-user.service';
 //import userService from '../controllers/User.service';
 import roleService from '../controllers/role.service';
 import AuthService from '../controllers/auth.service';
-// import ImportService from '../controllers/import.service';
-// import notificationService from '../controllers/notification.service';
-// import requestService from '../controllers/request.service';
-// import AMCService from '../controllers/AMC.service';
-// import categoryService from '../controllers/services.service';
+import jwt from 'jsonwebtoken';
 import verifyToken from '../middlewares/auth';
 import schema from '../helpers/utils/validate-schemas';
 import { ValidateJoi } from '../middlewares/joi-validator';
 import { userSchema } from '../models/schemavalidations/schema-validations';
+//import passport from 'passport';
+//import { OIDCStrategy } from 'passport-azure-ad';
+// import FastifyRequest from 'fastify'
+const clientId = process.env.AZURE_CLIENT_ID;
+const clientSecret = process.env.AZURE_CLIENT_SECRET;
+//import { azureADConfig } from '../config/azure-ad';
+//import fastifySession from '@fastify/session';
+
+
 
 export const fastifyAPIGateway: FastifyPluginAsync = async (fastify) => {
+
+    //fastify.get('/auth/azure', passport.authenticate('azuread-openidconnect'));
+    
   // Auth routes
   fastify.post("/login", (request, reply) => {
     return AuthService.Login(request, reply);
@@ -31,26 +39,26 @@ export const fastifyAPIGateway: FastifyPluginAsync = async (fastify) => {
     }
   });
   //Add User Details
-  fastify.post("/users/adduser",{
-    preHandler : [ verifyToken , ValidateJoi(schema.userSchema) ],
-    handler : async(request:any, reply:any) => {
+  fastify.post("/users/adduser", {
+    preHandler: [verifyToken, ValidateJoi(schema.userSchema)],
+    handler: async (request: any, reply: any) => {
       return userService.addUser(request, reply);
     }
   });
-    fastify.post("/roles/addrole",{
-    preHandler : [ verifyToken , ValidateJoi(schema.roleSchema) ],
-    handler : async(request:any, reply:any) => {
+  fastify.post("/roles/addrole", {
+    preHandler: [verifyToken, ValidateJoi(schema.roleSchema)],
+    handler: async (request: any, reply: any) => {
       return roleService.AddRole(request, reply);
     }
   })
-      fastify.get("/roles",{
-    preHandler : [ verifyToken , ValidateJoi(schema.roleSchema) ],
-    handler : async(request:any, reply:any) => {
+  fastify.get("/roles", {
+    preHandler: [verifyToken, ValidateJoi(schema.roleSchema)],
+    handler: async (request: any, reply: any) => {
       return roleService.getAllRoles(request, reply);
     }
   })
- // Get role by ID
-    fastify.get("/roles/:id", {
+  // Get role by ID
+  fastify.get("/roles/:id", {
     preHandler: [verifyToken],
     handler: async (request: any, reply: any) => {
       return roleService.getRoleById(request, reply);
@@ -72,7 +80,5 @@ export const fastifyAPIGateway: FastifyPluginAsync = async (fastify) => {
       return roleService.deleteRole(request, reply);
     }
   });
-
- 
 
 }; 

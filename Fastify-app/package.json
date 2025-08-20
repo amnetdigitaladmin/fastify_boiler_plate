@@ -12,13 +12,14 @@
     "author": "Amnet Digital",
     "license": "ISC",
     "dependencies": {
-        "@rohithkumar/shared_models": "^1.9.0",
         "@fastify/cookie": "^11.0.2",
         "@fastify/cors": "^11.1.0",
         "@fastify/helmet": "^13.0.1",
         "@fastify/rate-limit": "^10.3.0",
+        "@fastify/session": "^11.1.0",
         "@fastify/swagger": "^9.5.1",
         "@fastify/swagger-ui": "^5.2.3",
+        "@rohithkumar/shared_models": "^1.9.0",
         "@types/async": "^3.2.24",
         "@types/bcrypt-nodejs": "0.0.31",
         "@types/bunyan": "^1.8.11",
@@ -38,6 +39,7 @@
         "@typescript-eslint/parser": "^6.16.0",
         "async": "^3.2.5",
         "aws-sdk": "^2.1517.0",
+        "axios": "^1.11.0",
         "bcrypt": "^5.1.1",
         "bcrypt-nodejs": "0.0.3",
         "bunyan": "^1.8.15",
@@ -49,7 +51,10 @@
         "express": "^4.18.2",
         "express-rate-limit": "^8.0.1",
         "express-session": "^1.18.0",
-        "fastify": "^5.4.0",
+        "fastify": "^5.5.0",
+        "fastify-cookie": "^5.7.0",
+        "fastify-passport": "^0.6.0",
+        "fastify-session": "^5.2.1",
         "generate-password": "^1.7.1",
         "html-pdf-node": "^1.0.8",
         "joi": "^17.11.0",
@@ -63,6 +68,7 @@
         "node-cron": "^3.0.3",
         "nodemailer": "^6.9.7",
         "passport": "^0.7.0",
+        "passport-azure-ad": "^4.3.5",
         "passport-saml": "^3.2.4",
         "pg": "^8.12.0",
         "randomstring": "^1.3.0",
@@ -76,6 +82,7 @@
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
+        "@types/passport-azure-ad": "^4.3.6",
         "nodemon": "^3.1.10"
     }
 }

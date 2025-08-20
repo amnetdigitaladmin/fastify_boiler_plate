@@ -1,5 +1,5 @@
 // import { User } from '../schemas/user';
-import { User } from'@dineshReddyPadala/shared_models'
+import { User } from'@rohithkumar/shared_models'
 // import { UserRole } from '../schemas/user_role';
 import AppDataSource from "../../config/db";
 import common from "../../helpers/utils/common";
@@ -123,6 +123,7 @@ class UserRepository {
 
     public async getByemail(email: string) {
         try {
+            console.log("getByemail", email);
             return await userRepository
                 .createQueryBuilder('user')
                 .where('user.email=:email', { email: email })

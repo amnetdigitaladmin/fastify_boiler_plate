@@ -1,6 +1,6 @@
 import { userSessions } from '../schemas/user-sessions';
 // import { User } from '../schemas/user';
-import { User } from '@dineshReddyPadala/shared_models'
+import { User } from '@rohithkumar/shared_models'
 import AppDataSource from "../../config/db";  
 
 const userSessionRepository = AppDataSource.getRepository(userSessions);

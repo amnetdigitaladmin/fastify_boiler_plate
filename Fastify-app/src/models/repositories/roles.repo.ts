@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 // import { Role,Irole } from '../schemas/role';
 // import { UserRole,Iuserrole } from '../schemas/user_role';
 // import { User } from '../schemas/user';
-import { User } from '@dineshReddyPadala/shared_models'
+import { User } from '@rohithkumar/shared_models'
 import { Role, Irole } from '../schemas/role';
 import moment from 'moment';
 import _ from 'lodash';

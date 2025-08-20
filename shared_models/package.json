@@ -1,5 +1,5 @@
 {
- "name": "@platform-modules/civil-aviation-authority",
+ "name": "@platform-modules/foreign-ministry",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -1,6 +1,6 @@
 {
- "name": "@platform-modules/foreign-ministry",
-  "version": "1.0.0",
+ "name": "@platform-modules/civil-aviation-authority",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
